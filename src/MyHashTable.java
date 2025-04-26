@@ -1,5 +1,5 @@
 public class MyHashTable<K, V> {
-    private class HashNode<K, V>{
+    private static class HashNode<K, V>{
         private K key;
         private V value;
         private HashNode<K, V> next;
@@ -15,7 +15,7 @@ public class MyHashTable<K, V> {
         }
     }
     private HashNode<K, V>[] chainArray;
-    private double loadFactor = 0.9;
+    private static final double loadFactor = 0.9;
     private int size;
 
     public MyHashTable(){
@@ -94,6 +94,18 @@ public class MyHashTable<K, V> {
             current = current.next;
         }
         return null;
+    }
+
+    public boolean contains(V value) {
+        for (HashNode<K, V> current : chainArray){
+            while (current != null){
+                if (current.value.equals(value))
+                    return true;
+                current = current.next;
+            }
+
+        }
+        return false;
     }
 
     public int size(){

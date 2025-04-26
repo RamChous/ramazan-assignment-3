@@ -15,5 +15,8 @@ public class Main {
 
         System.out.println(table.remove("Arlan"));
         System.out.println(table.size());
+
+        System.out.println(table.contains(6));
+        System.out.println(table.contains(100));
     }
 }

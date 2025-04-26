@@ -1,8 +1,8 @@
 public class MyHashTable<K, V> {
-    private static class HashNode<K, V> {
+    static class HashNode<K, V> {
         private K key;
         private V value;
-        private HashNode<K, V> next;
+        HashNode<K, V> next;
 
         public HashNode(K key, V value) {
             this.key = key;
@@ -37,7 +37,7 @@ public class MyHashTable<K, V> {
             HashNode<K, V>[] oldChainArray = chainArray;
             chainArray = new HashNode[chainArray.length * 2];
 
-            for (HashNode<K, V> current : chainArray) {
+            for (HashNode<K, V> current : oldChainArray) {
                 while (current != null) {
                     HashNode<K, V> next = current.next;
                     int index = hash(current.key);
@@ -119,7 +119,15 @@ public class MyHashTable<K, V> {
         return null;
     }
 
-    public int size(){
+    public int size() {
         return size;
+    }
+
+    // for test
+    public int bucketCount() {
+        return chainArray.length;
+    }
+    public HashNode<K, V> getBucket(int index) {
+        return chainArray[index];
     }
 }

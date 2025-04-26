@@ -12,5 +12,8 @@ public class Main {
 
         System.out.println(table.get("Ramazan"));
         System.out.println(table.get("Alihan"));
+
+        System.out.println(table.remove("Arlan"));
+        System.out.println(table.size());
     }
 }

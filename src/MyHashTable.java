@@ -70,9 +70,27 @@ public class MyHashTable<K, V> {
         int index = hash(key);
         HashNode<K, V> current = chainArray[index];
         while (current != null){
+            if (current.key.equals(key))
+                return current.value;
+            current = current.next;
+        }
+        return null;
+    }
+
+    public V remove(K key){
+        int index = hash(key);
+        HashNode<K, V> current = chainArray[index];
+        HashNode<K, V> prev = null;
+        while (current != null){
             if (current.key.equals(key)){
+                if (prev != null)
+                    prev.next = current.next;
+                else
+                    chainArray[index] = current.next;
+                size--;
                 return current.value;
             }
+            prev = current;
             current = current.next;
         }
         return null;

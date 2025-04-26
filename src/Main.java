@@ -10,13 +10,24 @@ public class Main {
 
         System.out.println(table.size());
 
+        System.out.println("//////////");
+
         System.out.println(table.get("Ramazan"));
         System.out.println(table.get("Alihan"));
+
+        System.out.println("//////////");
 
         System.out.println(table.remove("Arlan"));
         System.out.println(table.size());
 
+        System.out.println("//////////");
+
         System.out.println(table.contains(6));
         System.out.println(table.contains(100));
+
+        System.out.println("//////////");
+
+        System.out.println(table.getKey(14));
+        System.out.println(table.getKey(52));
     }
 }

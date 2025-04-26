@@ -9,5 +9,8 @@ public class Main {
         table.put("Anuar", 14);
 
         System.out.println(table.size());
+
+        System.out.println(table.get("Ramazan"));
+        System.out.println(table.get("Alihan"));
     }
 }

@@ -1,10 +1,10 @@
 public class MyHashTable<K, V> {
-    private static class HashNode<K, V>{
+    private static class HashNode<K, V> {
         private K key;
         private V value;
         private HashNode<K, V> next;
 
-        public HashNode(K key, V value){
+        public HashNode(K key, V value) {
             this.key = key;
             this.value = value;
         }
@@ -18,12 +18,12 @@ public class MyHashTable<K, V> {
     private static final double loadFactor = 0.9;
     private int size;
 
-    public MyHashTable(){
+    public MyHashTable() {
         this(11);
         size = 0;
     }
 
-    public MyHashTable(int M){
+    public MyHashTable(int M) {
         chainArray = new HashNode[M];
         size = 0;
     }
@@ -37,7 +37,7 @@ public class MyHashTable<K, V> {
             HashNode<K, V>[] oldChainArray = chainArray;
             chainArray = new HashNode[chainArray.length * 2];
 
-            for (HashNode<K, V> current : chainArray){
+            for (HashNode<K, V> current : chainArray) {
                 while (current != null) {
                     HashNode<K, V> next = current.next;
                     int index = hash(current.key);
@@ -69,7 +69,7 @@ public class MyHashTable<K, V> {
     public V get(K key) {
         int index = hash(key);
         HashNode<K, V> current = chainArray[index];
-        while (current != null){
+        while (current != null) {
             if (current.key.equals(key))
                 return current.value;
             current = current.next;
@@ -77,12 +77,12 @@ public class MyHashTable<K, V> {
         return null;
     }
 
-    public V remove(K key){
+    public V remove(K key) {
         int index = hash(key);
         HashNode<K, V> current = chainArray[index];
         HashNode<K, V> prev = null;
         while (current != null){
-            if (current.key.equals(key)){
+            if (current.key.equals(key)) {
                 if (prev != null)
                     prev.next = current.next;
                 else
@@ -97,7 +97,7 @@ public class MyHashTable<K, V> {
     }
 
     public boolean contains(V value) {
-        for (HashNode<K, V> current : chainArray){
+        for (HashNode<K, V> current : chainArray) {
             while (current != null){
                 if (current.value.equals(value))
                     return true;
@@ -106,6 +106,17 @@ public class MyHashTable<K, V> {
 
         }
         return false;
+    }
+
+    public K getKey(V value) {
+        for (HashNode<K, V> current : chainArray) {
+            while (current != null) {
+                if (current.value.equals(value))
+                    return current.key;
+                current = current.next;
+            }
+        }
+        return null;
     }
 
     public int size(){
